@@ -185,7 +185,7 @@ bindsym $mod+z mode "resize"
 #        status_command i3status
 #}
 #Start polybar
-exec_always --no-startup-id $HOME/.config/polybar/launch.sh
+exec_always --no-startup-id "$HOME/.config/polybar/launch.sh --grayblocks"
 #Rofi
 bindsym $mod+r exec "rofi -modi drun,run -show drun"
 #Launch flameshot
@@ -193,7 +193,7 @@ exec flameshot
 #Configure multi monitor
 exec "autorandr -l def"
 #Set a wallpaper
-exec "feh --bg-scale /home/jakubs/Pictures/wallpaper.jpg"
+exec "feh --bg-scale $HOME/Pictures/wallpaper.jpg"
 #Change border
 #default_border pixel 1
 #default_floating_border pixel 1
@@ -202,7 +202,7 @@ bindsym $mod+Escape exec "rofi -show power-menu -modi power-menu:rofi-power-menu
 #Run OS secure storage
 exec --no-startup-id lxpolkit
 #Browser keybind
-bindsym $mod+b exec brave-browser-nightly
+bindsym $mod+b exec" brave-browser-nightly"
 #Run file explorer
 bindsym $mod+e exec thunar
 #Start clipboard manager
