@@ -15,6 +15,18 @@ set $mod Mod4
 # is used in the bar {} block below.
 font pango:monospace 8
 
+#Gaps and rounded corners
+for_window [class="^.*"] border pixel 0
+border_radius 8
+gaps inner 5
+gaps outer 5
+
+bindsym $mod+Tab gaps outer current plus 5
+bindsym $mod+Shift+Tab gaps outer current minus 5
+
+
+
+
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
 #font pango:DejaVu Sans Mono 8
@@ -33,7 +45,8 @@ exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 # NetworkManager is the most popular way to manage wireless networks on Linux,
 # and nm-applet is a desktop environment-independent system tray GUI for it.
 #exec --no-startup-id nm-applet
-
+#default_border pixel 1
+#default_floating_border pixel 1
 # Use pactl to adjust volume in PulseAudio.
 set $refresh_i3status killall -SIGUSR1 i3status
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status
@@ -110,15 +123,15 @@ bindsym $mod+a focus parent
 
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
-set $ws1 "1"
-set $ws2 "2"
-set $ws3 "3"
-set $ws4 "4"
-set $ws5 "5"
-set $ws6 "6"
-set $ws7 "7"
-set $ws8 "8"
-set $ws9 "9"
+set $ws1 "1 "
+set $ws2 "2 "
+set $ws3 "3 "
+set $ws4 "4 "
+set $ws5 "5 "
+set $ws6 "6 "
+set $ws7 "7 "
+set $ws8 "8 "
+set $ws9 "9 "
 set $ws10 "10"
 
 # switch to workspace
@@ -174,7 +187,7 @@ mode "resize" {
         # back to normal: Enter or Escape or $mod+r
         bindsym Return mode "default"
         bindsym Escape mode "default"
-        bindsym $mod+z mode "default"kitty
+        bindsym $mod+z mode "default"
 }
 
 bindsym $mod+z mode "resize"
@@ -198,15 +211,21 @@ exec "feh --bg-scale $HOME/Pictures/wallpaper.jpg"
 #default_border pixel 1
 #default_floating_border pixel 1
 #Power menu
-bindsym $mod+Escape exec "rofi -show power-menu -modi power-menu:rofi-power-menu"
+bindsym $mod+Escape exec "sh ~/.config/polybar/grayblocks/scripts/powermenu.sh"
 #Run OS secure storage
-exec --no-startup-id lxpolkit
+exec --no-startup-id lxsession
 #Browser keybind
 bindsym $mod+b exec" brave-browser-nightly"
 #Run file explorer
 bindsym $mod+e exec thunar
 #Start clipboard manager
 exec "diodon"
+#start ibus
+exec --no-startup-id ibus-daemon -drx
+#start picom
+exec --no-startup-id picom
+#Start discord
+exec --no-startup-id discord --start-minimized
 
 exec --no-startup-id urxvtc
 
